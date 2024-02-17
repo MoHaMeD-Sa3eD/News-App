@@ -24,9 +24,13 @@ class CustomFAB extends StatelessWidget {
 
   void customBottomSheet(BuildContext context) {
     showModalBottomSheet(
-        context: context,
-        builder: (context) {
-          return Container();
-        });
+      context: context,
+      builder: (context) {
+        return Container();
+      },
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16)
+      ),
+    );
   }
 }
