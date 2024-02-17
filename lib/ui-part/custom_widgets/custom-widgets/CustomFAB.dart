@@ -13,11 +13,20 @@ class CustomFAB extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(24),
       ),
-      onPressed: () {},
-      child: IconButton(
-        onPressed: () {},
-        icon: const Icon(Icons.add),
+      onPressed: () {
+        customBottomSheet(context);
+      },
+      child: const Icon(
+        Icons.add,
       ),
     );
+  }
+
+  void customBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Container();
+        });
   }
 }

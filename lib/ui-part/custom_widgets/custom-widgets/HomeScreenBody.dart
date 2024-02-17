@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'CustomAppBar.dart';
-import 'CustomNoteItem.dart';
 import 'NotesListView.dart';
 
 class HomeScreenBody extends StatelessWidget {
