@@ -1,20 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:notes_app/ui-part/custom_widgets/custom-widgets/CustomAppBar.dart';
+import 'package:notes_app/ui-part/custom_widgets/custom-widgets/HomeScreenBody.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          'Notes',
-          style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
+    return const Scaffold(
+      body: HomeScreenBody(),
     );
   }
 }

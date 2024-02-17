@@ -16,7 +16,6 @@ class NotesApp extends StatelessWidget {
       title: 'Notes-App',
       theme: ThemeData(
         brightness: Brightness.dark,
-      scaffoldBackgroundColor: Colors.black
       ),
     );
   }
