@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'CustomAppBar.dart';
+import 'CustomNoteItem.dart';
+import 'NotesListView.dart';
 
 class HomeScreenBody extends StatelessWidget {
   const HomeScreenBody({super.key});
@@ -12,13 +14,14 @@ class HomeScreenBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 35,
+            height: 30,
           ),
           CustomAppBar(),
+          Expanded(
+            child: NotesListView(),
+          )
         ],
       ),
     );
   }
 }
-
-

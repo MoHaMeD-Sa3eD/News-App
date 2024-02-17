@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/ui-part/custom_widgets/custom-widgets/CustomAppBar.dart';
 import 'package:notes_app/ui-part/custom_widgets/custom-widgets/HomeScreenBody.dart';
 
 class HomeScreen extends StatelessWidget {
