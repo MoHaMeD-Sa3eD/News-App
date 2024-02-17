@@ -29,7 +29,7 @@ class CustomFAB extends StatelessWidget {
         return Container();
       },
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16)
+        borderRadius: BorderRadius.circular(24)
       ),
     );
   }
