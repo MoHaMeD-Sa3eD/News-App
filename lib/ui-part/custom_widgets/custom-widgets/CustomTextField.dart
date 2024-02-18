@@ -13,12 +13,10 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: TextField(
-     cursorColor: kPrimaryCyanColor,
-        maxLines: 2,
+        cursorColor: kPrimaryCyanColor,
+        maxLines: customTextFieldModel.maxLines,
         onSubmitted: customTextFieldModel.onSubmitted,
         decoration: InputDecoration(
-          contentPadding: EdgeInsets.symmetric(
-              horizontal: 16, vertical: customTextFieldModel.verticalPadding),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
           ),

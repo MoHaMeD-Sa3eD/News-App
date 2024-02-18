@@ -30,20 +30,23 @@ class CustomFAB extends StatelessWidget {
       context: context,
       builder: (context) {
         return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 32),
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
           child: Column(
             children: [
+              const SizedBox(
+                height: 32,
+              ),
               CustomTextField(
                 customTextFieldModel: CustomTextFieldModel(
+
                   onSubmitted: (String data) {},
-                  verticalPadding: 16,
                   hintText: 'Title',
                 ),
               ),
               CustomTextField(
                   customTextFieldModel: CustomTextFieldModel(
+                    maxLines: 5,
                 onSubmitted: (String data) {},
-                verticalPadding: 55,
                 hintText: 'Content',
               )),
               const Spacer(),

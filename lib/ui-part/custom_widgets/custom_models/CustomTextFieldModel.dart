@@ -1,12 +1,11 @@
 class CustomTextFieldModel {
-  final double verticalPadding;
-
   final String hintText;
-
+  final int maxLines;
   final Function(String data) onSubmitted;
 
-  CustomTextFieldModel(
-      {required this.verticalPadding,
-      required this.hintText,
-      required this.onSubmitted});
+  CustomTextFieldModel({
+    this.maxLines=1,
+    required this.hintText,
+    required this.onSubmitted,
+  });
 }
