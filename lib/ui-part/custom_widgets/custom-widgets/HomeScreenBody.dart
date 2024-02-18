@@ -13,10 +13,11 @@ class HomeScreenBody extends StatelessWidget {
       child: Column(
         children: [
           SizedBox(
-            height: 30,
+            height: 40,
           ),
           CustomAppBar(
             title: 'Notes',
+            icon: Icons.search,
           ),
           Expanded(
             child: NotesListView(),
