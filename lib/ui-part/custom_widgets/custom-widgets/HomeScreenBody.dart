@@ -15,7 +15,9 @@ class HomeScreenBody extends StatelessWidget {
           SizedBox(
             height: 30,
           ),
-          CustomAppBar(),
+          CustomAppBar(
+            title: 'Notes',
+          ),
           Expanded(
             child: NotesListView(),
           )
