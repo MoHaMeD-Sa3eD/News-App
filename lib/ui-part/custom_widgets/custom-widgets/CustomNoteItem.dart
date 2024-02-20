@@ -11,13 +11,7 @@ class CustomNoteItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (context) {
-              return const EditNoteScreen();
-            },
-          ),
-        );
+        Navigator.of(context).pushNamed(EditNoteScreen.editNoteScreenId);
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 8),
