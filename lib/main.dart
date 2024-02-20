@@ -4,10 +4,13 @@ import 'package:notes_app/ui-part/constants.dart';
 import 'package:notes_app/ui-part/screens/EditNoteScreen.dart';
 import 'package:notes_app/ui-part/screens/HomeScreen.dart';
 
+import 'logic-part/NotesModel.dart';
+
 void main() async {
   await Hive.initFlutter();
 
   await Hive.openBox(kNotesBoxName);
+  Hive.registerAdapter(NoteModelAdapter());
   runApp(const NotesApp());
 }
 
