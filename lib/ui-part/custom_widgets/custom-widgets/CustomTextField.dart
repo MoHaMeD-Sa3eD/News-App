@@ -12,10 +12,17 @@ class CustomTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
-      child: TextField(
+      child: TextFormField(
         cursorColor: kPrimaryCyanColor,
         maxLines: customTextFieldModel.maxLines,
-        onSubmitted: customTextFieldModel.onSubmitted,
+        onSaved: customTextFieldModel.onSaved,
+        validator: (data) {
+          if (data?.isEmpty ?? true) {
+            return 'Field is required';
+          } else {
+            return null;
+          }
+        },
         decoration: InputDecoration(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),

@@ -25,14 +25,14 @@ class EditNoteScreenBody extends StatelessWidget {
           CustomTextField(
             customTextFieldModel: CustomTextFieldModel(
               hintText: 'Title',
-              onSubmitted: (data) {},
+              onSaved: (data) {},
             ),
           ),
           CustomTextField(
             customTextFieldModel: CustomTextFieldModel(
               maxLines: 5,
               hintText: 'Content',
-              onSubmitted: (data) {},
+              onSaved: (data) {},
             ),
           ),
         ],

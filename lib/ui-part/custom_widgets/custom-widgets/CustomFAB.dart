@@ -29,36 +29,69 @@ class CustomFAB extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 32,
-              ),
-              CustomTextField(
-                customTextFieldModel: CustomTextFieldModel(
-
-                  onSubmitted: (String data) {},
-                  hintText: 'Title',
-                ),
-              ),
-              CustomTextField(
-                  customTextFieldModel: CustomTextFieldModel(
-                    maxLines: 5,
-                onSubmitted: (String data) {},
-                hintText: 'Content',
-              )),
-              const Spacer(),
-              CustomElevatedButton(
-                onPressed: () {},
-                buttonText: 'Add',
-              ),
-            ],
-          ),
-        );
+        return const AddNoteForm();
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
+    );
+  }
+}
+
+class AddNoteForm extends StatefulWidget {
+  const AddNoteForm({
+    super.key,
+  });
+
+  @override
+  State<AddNoteForm> createState() => _AddNoteFormState();
+}
+
+class _AddNoteFormState extends State<AddNoteForm> {
+  GlobalKey<FormState> formKey = GlobalKey();
+
+  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
+
+  String? title, subTitle;
+
+  @override
+  Widget build(BuildContext context) {
+    return Form(
+      key: formKey,
+      autovalidateMode: autoValidateMode,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0),
+        child: Column(
+          children: [
+            const SizedBox(
+              height: 32,
+            ),
+            CustomTextField(
+              customTextFieldModel: CustomTextFieldModel(
+                onSaved: (data) {
+                  title = data;
+                },
+                hintText: 'Title',
+              ),
+            ),
+            CustomTextField(
+                customTextFieldModel: CustomTextFieldModel(
+              onSaved: (data) {
+                subTitle = data;
+              },
+              maxLines: 5,
+              hintText: 'Content',
+            )),
+            const Spacer(),
+            CustomElevatedButton(
+              onPressed: () {
+                if (formKey.currentState!.validate()) {
+
+                }
+              },
+              buttonText: 'Add',
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

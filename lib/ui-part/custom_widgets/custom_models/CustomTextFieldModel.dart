@@ -1,11 +1,13 @@
 class CustomTextFieldModel {
   final String hintText;
   final int maxLines;
-  final Function(String data) onSubmitted;
+   final void Function(String? newValue)? onSaved;
+
+
 
   CustomTextFieldModel({
-    this.maxLines=1,
+    this.maxLines = 1,
     required this.hintText,
-    required this.onSubmitted,
+     this.onSaved,
   });
 }
