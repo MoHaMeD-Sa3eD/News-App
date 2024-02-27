@@ -84,7 +84,9 @@ class _AddNoteFormState extends State<AddNoteForm> {
             CustomElevatedButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
-
+                  formKey.currentState!.save();
+                } else {
+                  autoValidateMode = AutovalidateMode.always;
                 }
               },
               buttonText: 'Add',
