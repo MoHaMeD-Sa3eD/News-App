@@ -31,20 +31,24 @@ class CustomFAB extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        return BlocConsumer<AddNoteCubit, AddNoteStates>(
-          listener: (BuildContext context, AddNoteStates state) {
-            if (state is AddNoteFaliure) {
-              debugPrint('failed ${state.errMessage}');
-            }
-            if (state is AddNoteSuccess) {
-              Navigator.pop(context);
-            }
-          },
-          builder: (BuildContext context, AddNoteStates state) {
-            return ModalProgressHUD(
-                inAsyncCall: state is LoadingAddNote ? true : false,
-                child: const AddNoteForm());
-          },
+        return BlocProvider(
+          create: (context) => AddNoteCubit(),
+          child: BlocConsumer<AddNoteCubit, AddNoteStates>(
+            listener: (BuildContext context, AddNoteStates state) {
+              if (state is AddNoteFaliure) {
+                debugPrint(
+                    'errorMessage from listener in BlocConsumer : ${state.errMessage}');
+              }
+              if (state is AddNoteSuccess) {
+                Navigator.pop(context);
+              }
+            },
+            builder: (BuildContext context, AddNoteStates state) {
+              return ModalProgressHUD(
+                  inAsyncCall: state is LoadingAddNote ? true : false,
+                  child: const AddNoteForm());
+            },
+          ),
         );
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),

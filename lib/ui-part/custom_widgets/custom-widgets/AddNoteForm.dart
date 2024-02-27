@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/logic-part/NotesModel.dart';
 import 'package:notes_app/logic-part/cubits/addNoteCubit/AddNoteCubit.dart';
-
+import 'package:notes_app/logic-part/cubits/addNoteCubit/AddNoteStates.dart';
 import '../custom_models/CustomTextFieldModel.dart';
 import 'CustomElevatedButton.dart';
 import 'CustomTextField.dart';
@@ -52,24 +52,27 @@ class _AddNoteFormState extends State<AddNoteForm> {
               hintText: 'Content',
             )),
             const Spacer(),
-            CustomElevatedButton(
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                  NoteModel noteModel = NoteModel(
-                      title: title!,
-                      subTitle: subTitle!,
-                      date: DateTime.now().toString(),
-                      color: Colors.blue.value);
-                  BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                } else {
-                  autoValidateMode = AutovalidateMode.always;
-                  setState(() {
-
-                  });
-                }
+            BlocBuilder<AddNoteCubit, AddNoteStates>(
+              builder: (context, state) {
+                return CustomElevatedButton(
+                  onPressed: () {
+                    if (formKey.currentState!.validate()) {
+                      formKey.currentState!.save();
+                      NoteModel noteModel = NoteModel(
+                          title: title!,
+                          subTitle: subTitle!,
+                          date: DateTime.now().toString(),
+                          color: Colors.blue.value);
+                      BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
+                    } else {
+                      autoValidateMode = AutovalidateMode.always;
+                      setState(() {});
+                    }
+                  },
+                  buttonText: 'Add',
+                  isLoading: state is LoadingAddNote ? true : false,
+                );
               },
-              buttonText: 'Add',
             ),
           ],
         ),

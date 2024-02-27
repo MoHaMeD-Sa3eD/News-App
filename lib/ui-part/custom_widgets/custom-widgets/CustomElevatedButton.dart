@@ -3,12 +3,17 @@ import 'package:flutter/material.dart';
 import '../../constants.dart';
 
 class CustomElevatedButton extends StatelessWidget {
-
   final Function() onPressed;
 
+  final bool isLoading;
+
   final String buttonText;
+
   const CustomElevatedButton({
-    super.key, required this.onPressed, required this.buttonText,
+    super.key,
+    required this.onPressed,
+    required this.buttonText,
+    this.isLoading = false,
   });
 
   @override
@@ -25,10 +30,14 @@ class CustomElevatedButton extends StatelessWidget {
         ),
       ),
       onPressed: onPressed,
-      child:  Text(
-        buttonText,
-        style: const TextStyle(color: Colors.black),
-      ),
+      child: isLoading
+          ? const CircularProgressIndicator(
+              color: Colors.black,
+            )
+          : Text(
+              buttonText,
+              style: const TextStyle(color: Colors.black),
+            ),
     );
   }
 }

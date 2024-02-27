@@ -3,8 +3,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notes_app/ui-part/screens/EditNoteScreen.dart';
 
 class CustomNoteItem extends StatelessWidget {
+
+
   const CustomNoteItem({
     super.key,
+
   });
 
   @override
