@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:notes_app/logic-part/cubits/addNoteCubit/AddNoteCubit.dart';
+import 'package:notes_app/logic-part/cubits/sipmle_bloc_observer.dart';
 import 'package:notes_app/ui-part/constants.dart';
 import 'package:notes_app/ui-part/screens/EditNoteScreen.dart';
 import 'package:notes_app/ui-part/screens/HomeScreen.dart';
@@ -9,6 +10,7 @@ import 'package:notes_app/ui-part/screens/HomeScreen.dart';
 import 'logic-part/NotesModel.dart';
 
 void main() async {
+  Bloc.observer=SimpleBlocObserver();
   await Hive.initFlutter();
 
   await Hive.openBox(kNotesBoxName);
