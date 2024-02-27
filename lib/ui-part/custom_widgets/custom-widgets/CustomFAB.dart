@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:notes_app/ui-part/custom_widgets/custom_models/CustomTextFieldModel.dart';
-import 'CustomElevatedButton.dart';
-import 'CustomTextField.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/logic-part/cubits/addNoteCubit/AddNoteCubit.dart';
+import 'package:notes_app/logic-part/cubits/addNoteCubit/AddNoteStates.dart';
+import 'AddNoteForm.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class CustomFAB extends StatelessWidget {
   const CustomFAB({
@@ -29,71 +31,26 @@ class CustomFAB extends StatelessWidget {
     showModalBottomSheet(
       context: context,
       builder: (context) {
-        return const AddNoteForm();
+        return BlocConsumer<AddNoteCubit, AddNoteStates>(
+          listener: (BuildContext context, AddNoteStates state) {
+            if (state is AddNoteFaliure) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                SnackBar(
+                  content: Text('Faliure : ${state.errMessage}'),
+                ),
+              );
+            } else if (state is AddNoteSuccess) {
+              Navigator.pop(context);
+            }
+          },
+          builder: (BuildContext context, AddNoteStates state) {
+            return ModalProgressHUD(
+                inAsyncCall: state is LoadingAddNote ? true : false,
+                child: const AddNoteForm());
+          },
+        );
       },
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24)),
-    );
-  }
-}
-
-class AddNoteForm extends StatefulWidget {
-  const AddNoteForm({
-    super.key,
-  });
-
-  @override
-  State<AddNoteForm> createState() => _AddNoteFormState();
-}
-
-class _AddNoteFormState extends State<AddNoteForm> {
-  GlobalKey<FormState> formKey = GlobalKey();
-
-  AutovalidateMode autoValidateMode = AutovalidateMode.disabled;
-
-  String? title, subTitle;
-
-  @override
-  Widget build(BuildContext context) {
-    return Form(
-      key: formKey,
-      autovalidateMode: autoValidateMode,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 32,
-            ),
-            CustomTextField(
-              customTextFieldModel: CustomTextFieldModel(
-                onSaved: (data) {
-                  title = data;
-                },
-                hintText: 'Title',
-              ),
-            ),
-            CustomTextField(
-                customTextFieldModel: CustomTextFieldModel(
-              onSaved: (data) {
-                subTitle = data;
-              },
-              maxLines: 5,
-              hintText: 'Content',
-            )),
-            const Spacer(),
-            CustomElevatedButton(
-              onPressed: () {
-                if (formKey.currentState!.validate()) {
-                  formKey.currentState!.save();
-                } else {
-                  autoValidateMode = AutovalidateMode.always;
-                }
-              },
-              buttonText: 'Add',
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
