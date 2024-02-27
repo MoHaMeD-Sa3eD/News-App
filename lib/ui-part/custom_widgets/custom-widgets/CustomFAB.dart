@@ -34,13 +34,9 @@ class CustomFAB extends StatelessWidget {
         return BlocConsumer<AddNoteCubit, AddNoteStates>(
           listener: (BuildContext context, AddNoteStates state) {
             if (state is AddNoteFaliure) {
-              debugPrint('');
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text('Faliure : ${state.errMessage}'),
-                ),
-              );
-            } else if (state is AddNoteSuccess) {
+              debugPrint('failed ${state.errMessage}');
+            }
+            if (state is AddNoteSuccess) {
               Navigator.pop(context);
             }
           },

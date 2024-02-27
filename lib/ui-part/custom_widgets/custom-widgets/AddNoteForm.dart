@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/logic-part/NotesModel.dart';
+import 'package:notes_app/logic-part/cubits/addNoteCubit/AddNoteCubit.dart';
 
 import '../custom_models/CustomTextFieldModel.dart';
 import 'CustomElevatedButton.dart';
@@ -42,19 +45,28 @@ class _AddNoteFormState extends State<AddNoteForm> {
             ),
             CustomTextField(
                 customTextFieldModel: CustomTextFieldModel(
-                  onSaved: (data) {
-                    subTitle = data;
-                  },
-                  maxLines: 5,
-                  hintText: 'Content',
-                )),
+              onSaved: (data) {
+                subTitle = data;
+              },
+              maxLines: 5,
+              hintText: 'Content',
+            )),
             const Spacer(),
             CustomElevatedButton(
               onPressed: () {
                 if (formKey.currentState!.validate()) {
                   formKey.currentState!.save();
+                  NoteModel noteModel = NoteModel(
+                      title: title!,
+                      subTitle: subTitle!,
+                      date: DateTime.now().toString(),
+                      color: Colors.blue.value);
+                  BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
                 } else {
                   autoValidateMode = AutovalidateMode.always;
+                  setState(() {
+
+                  });
                 }
               },
               buttonText: 'Add',
