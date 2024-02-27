@@ -3,7 +3,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/logic-part/cubits/addNoteCubit/AddNoteCubit.dart';
 import 'package:notes_app/logic-part/cubits/addNoteCubit/AddNoteStates.dart';
 import 'AddNoteForm.dart';
-import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class CustomFAB extends StatelessWidget {
   const CustomFAB({
@@ -44,9 +43,10 @@ class CustomFAB extends StatelessWidget {
               }
             },
             builder: (BuildContext context, AddNoteStates state) {
-              return ModalProgressHUD(
-                  inAsyncCall: state is LoadingAddNote ? true : false,
-                  child: const AddNoteForm());
+              return  AbsorbPointer(
+                absorbing: state is LoadingAddNote?true:false,
+                child: const AddNoteForm(),
+              );
             },
           ),
         );
