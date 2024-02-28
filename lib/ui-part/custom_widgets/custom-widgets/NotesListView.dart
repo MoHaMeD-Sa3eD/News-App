@@ -17,6 +17,7 @@ class NotesListView extends StatelessWidget {
       builder: (BuildContext context, state) {
         List<NoteModel> notes = BlocProvider.of<ViewNoteCubit>(context).notes!;
         return ListView.builder(
+          reverse: true,
           itemCount: notes.length,
           padding: const EdgeInsets.symmetric(vertical: 8),
           itemBuilder: (context, index) {
