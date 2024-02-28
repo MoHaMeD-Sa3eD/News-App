@@ -63,6 +63,7 @@ class _AddNoteFormState extends State<AddNoteForm> {
                   builder: (context, state) {
                     return CustomElevatedButton(
                       onPressed: () {
+
                         DateTime currentDate = DateTime.now();
                         String formattedDate = DateFormat('yyyy-MM-dd   HH:mm:ss').format(currentDate);
 

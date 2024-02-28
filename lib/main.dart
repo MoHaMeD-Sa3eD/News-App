@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:notes_app/logic-part/cubits/sipmle_bloc_observer.dart';
+import 'package:notes_app/logic-part/cubits/viewNoteCubit/ViewNoteCubit.dart';
 import 'package:notes_app/ui-part/constants.dart';
 import 'package:notes_app/ui-part/screens/EditNoteScreen.dart';
 import 'package:notes_app/ui-part/screens/HomeScreen.dart';
@@ -21,23 +22,26 @@ class NotesApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      routes: <String, WidgetBuilder>{
-        EditNoteScreen.editNoteScreenId: (context) => const EditNoteScreen(),
-        HomeScreen.homeScreenId: (context) => const HomeScreen(),
-      },
-      initialRoute: HomeScreen.homeScreenId,
-      debugShowCheckedModeBanner: false,
-      home: const HomeScreen(),
-      title: 'Notes-App',
-      theme: ThemeData(
-        pageTransitionsTheme: const PageTransitionsTheme(
-          builders: {
-            TargetPlatform.android: CupertinoPageTransitionsBuilder(),
-          },
+    return BlocProvider(
+      create: (context) => ViewNoteCubit(),
+      child: MaterialApp(
+        routes: <String, WidgetBuilder>{
+          EditNoteScreen.editNoteScreenId: (context) => const EditNoteScreen(),
+          HomeScreen.homeScreenId: (context) => const HomeScreen(),
+        },
+        initialRoute: HomeScreen.homeScreenId,
+        debugShowCheckedModeBanner: false,
+        home: const HomeScreen(),
+        title: 'Notes-App',
+        theme: ThemeData(
+          pageTransitionsTheme: const PageTransitionsTheme(
+            builders: {
+              TargetPlatform.android: CupertinoPageTransitionsBuilder(),
+            },
+          ),
+          fontFamily: 'Poppins',
+          brightness: Brightness.dark,
         ),
-        fontFamily: 'Poppins',
-        brightness: Brightness.dark,
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/logic-part/cubits/addNoteCubit/AddNoteCubit.dart';
 import 'package:notes_app/logic-part/cubits/addNoteCubit/AddNoteStates.dart';
+import 'package:notes_app/logic-part/cubits/viewNoteCubit/ViewNoteCubit.dart';
 import 'AddNoteForm.dart';
 
 class CustomFAB extends StatelessWidget {
@@ -40,11 +41,13 @@ class CustomFAB extends StatelessWidget {
                     'errorMessage from listener in BlocConsumer : ${state.errMessage}');
               }
               if (state is AddNoteSuccess) {
+                BlocProvider.of<ViewNoteCubit>(context).fetchNotes();
+
                 Navigator.pop(context);
               }
             },
             builder: (BuildContext context, AddNoteStates state) {
-              return  const AddNoteForm();
+              return const AddNoteForm();
             },
           ),
         );

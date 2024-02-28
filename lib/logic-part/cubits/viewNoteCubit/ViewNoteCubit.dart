@@ -14,5 +14,6 @@ class ViewNoteCubit extends Cubit<ViewNoteStates> {
 
     notes = notesBox.values.toList();
 
+    emit(ViewNotesSuccessfulState());
   }
 }
