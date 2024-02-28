@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:notes_app/logic-part/NotesModel.dart';
 import 'package:notes_app/ui-part/screens/EditNoteScreen.dart';
 
 class CustomNoteItem extends StatelessWidget {
-
+  final NoteModel noteModel;
 
   const CustomNoteItem({
     super.key,
-
+    required this.noteModel,
   });
 
   @override
@@ -27,12 +28,12 @@ class CustomNoteItem extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
             ListTile(
-              title: const Text(
-                'Flutter tips',
-                style: TextStyle(fontSize: 32, color: Colors.black),
+              title: Text(
+                noteModel.title,
+                style: const TextStyle(fontSize: 32, color: Colors.black),
               ),
               subtitle: Text(
-                "Build Your Career with\tMohamed Saeed",
+                noteModel.subTitle,
                 style: TextStyle(
                     fontSize: 18, color: Colors.brown.withOpacity(0.8)),
               ),
@@ -48,7 +49,7 @@ class CustomNoteItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(right: 33.0),
               child: Text(
-                '\nMay21 , 2022',
+                noteModel.date,
                 style: TextStyle(
                     fontSize: 16, color: Colors.brown.withOpacity(0.8)),
               ),

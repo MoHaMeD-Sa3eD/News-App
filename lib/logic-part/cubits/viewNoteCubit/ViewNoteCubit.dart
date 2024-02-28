@@ -7,13 +7,11 @@ import 'package:notes_app/ui-part/constants.dart';
 class ViewNoteCubit extends Cubit<ViewNoteStates> {
   ViewNoteCubit() : super(ViewNotesInitialState());
 
-  late List<NoteModel> noteModel;
+  List<NoteModel>? notes;
 
   fetchNotes() {
     var notesBox = Hive.box<NoteModel>(kNotesBoxName);
 
-    noteModel = notesBox.values.toList();
-
-    emit(ViewNotesSuccessfulState());
+    notes = notesBox.values.toList();
   }
 }
