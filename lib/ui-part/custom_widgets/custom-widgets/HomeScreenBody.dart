@@ -17,6 +17,7 @@ class _HomeScreenBodyState extends State<HomeScreenBody> {
   @override
   void initState() {
 BlocProvider.of<ViewNoteCubit>(context).fetchNotes();
+
     super.initState();
   }
   @override

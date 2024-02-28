@@ -6,6 +6,7 @@ import 'package:notes_app/logic-part/cubits/addNoteCubit/AddNoteStates.dart';
 import '../custom_models/CustomTextFieldModel.dart';
 import 'CustomElevatedButton.dart';
 import 'CustomTextField.dart';
+import 'package:intl/intl.dart';
 
 class AddNoteForm extends StatefulWidget {
   const AddNoteForm({
@@ -62,12 +63,15 @@ class _AddNoteFormState extends State<AddNoteForm> {
                   builder: (context, state) {
                     return CustomElevatedButton(
                       onPressed: () {
+                        DateTime currentDate = DateTime.now();
+                        String formattedDate = DateFormat('yyyy-MM-dd   HH:mm:ss').format(currentDate);
+
                         if (formKey.currentState!.validate()) {
                           formKey.currentState!.save();
                           NoteModel noteModel = NoteModel(
                               title: title!,
                               subTitle: subTitle!,
-                              date: DateTime.now().toString(),
+                              date: formattedDate,
                               color: Colors.blue.value);
                           BlocProvider.of<AddNoteCubit>(context)
                               .addNote(noteModel);
