@@ -10,16 +10,10 @@ class ViewNoteCubit extends Cubit<ViewNoteStates> {
   late List<NoteModel> noteModel;
 
   fetchNotes() {
-    emit(ViewNotesLoadingState());
     var notesBox = Hive.box<NoteModel>(kNotesBoxName);
-    try {
-      noteModel = notesBox.values.toList();
 
-      emit(ViewNotesSuccessfulState());
-    } catch (e) {
-      emit(ViewNotesFaliureState(
-          errMessage:
-              'there was an error in the addNote Method in ViewNoteCubit with errMessage: ${e.toString()}'));
-    }
+    noteModel = notesBox.values.toList();
+
+    emit(ViewNotesSuccessfulState());
   }
 }
