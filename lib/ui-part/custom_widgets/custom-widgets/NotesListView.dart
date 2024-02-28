@@ -16,12 +16,15 @@ class NotesListView extends StatelessWidget {
     return BlocBuilder<ViewNoteCubit, ViewNoteStates>(
       builder: (BuildContext context, state) {
         List<NoteModel> notes = BlocProvider.of<ViewNoteCubit>(context).notes!;
+        List<NoteModel> reversedNotes = List.from(notes.reversed);
         return ListView.builder(
-          reverse: true,
+
           itemCount: notes.length,
           padding: const EdgeInsets.symmetric(vertical: 8),
           itemBuilder: (context, index) {
-            return CustomNoteItem(noteModel: notes[index],);
+            return CustomNoteItem(
+              noteModel: reversedNotes[index],
+            );
           },
         );
       },
