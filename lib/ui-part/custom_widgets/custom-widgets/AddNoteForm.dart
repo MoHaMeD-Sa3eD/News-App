@@ -28,53 +28,62 @@ class _AddNoteFormState extends State<AddNoteForm> {
     return Form(
       key: formKey,
       autovalidateMode: autoValidateMode,
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16.0),
-        child: Column(
-          children: [
-            const SizedBox(
-              height: 32,
-            ),
-            CustomTextField(
-              customTextFieldModel: CustomTextFieldModel(
-                onSaved: (data) {
-                  title = data;
-                },
-                hintText: 'Title',
-              ),
-            ),
-            CustomTextField(
-                customTextFieldModel: CustomTextFieldModel(
-              onSaved: (data) {
-                subTitle = data;
-              },
-              maxLines: 5,
-              hintText: 'Content',
-            )),
-            const Spacer(),
-            BlocBuilder<AddNoteCubit, AddNoteStates>(
-              builder: (context, state) {
-                return CustomElevatedButton(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      formKey.currentState!.save();
-                      NoteModel noteModel = NoteModel(
-                          title: title!,
-                          subTitle: subTitle!,
-                          date: DateTime.now().toString(),
-                          color: Colors.blue.value);
-                      BlocProvider.of<AddNoteCubit>(context).addNote(noteModel);
-                    } else {
-                      autoValidateMode = AutovalidateMode.always;
-                      setState(() {});
-                    }
+      child: SingleChildScrollView(
+        child: Padding(
+          padding: EdgeInsets.only(
+              right: 16.0,
+              left: 16.0,
+              bottom: MediaQuery.of(context).viewInsets.bottom),
+          child: SizedBox(
+            height: MediaQuery.of(context).size.height/1.8,
+            child: Column(
+              children: [
+                const SizedBox(
+                  height: 32,
+                ),
+                CustomTextField(
+                  customTextFieldModel: CustomTextFieldModel(
+                    onSaved: (data) {
+                      title = data;
+                    },
+                    hintText: 'Title',
+                  ),
+                ),
+                CustomTextField(
+                    customTextFieldModel: CustomTextFieldModel(
+                  onSaved: (data) {
+                    subTitle = data;
                   },
-                  buttonText: 'Add',
-                  isLoading: state is LoadingAddNote ? true : false,
-                );
-              },
+                  maxLines: 5,
+                  hintText: 'Content',
+                )),
+                const Spacer(),
+                BlocBuilder<AddNoteCubit, AddNoteStates>(
+                  builder: (context, state) {
+                    return CustomElevatedButton(
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          formKey.currentState!.save();
+                          NoteModel noteModel = NoteModel(
+                              title: title!,
+                              subTitle: subTitle!,
+                              date: DateTime.now().toString(),
+                              color: Colors.blue.value);
+                          BlocProvider.of<AddNoteCubit>(context)
+                              .addNote(noteModel);
+                        } else {
+                          autoValidateMode = AutovalidateMode.always;
+                          setState(() {});
+                        }
+                      },
+                      buttonText: 'Add',
+                      isLoading: state is LoadingAddNote ? true : false,
+                    );
+                  },
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

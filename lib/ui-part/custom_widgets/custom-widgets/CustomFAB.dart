@@ -28,6 +28,7 @@ class CustomFAB extends StatelessWidget {
 
   void customBottomSheet(BuildContext context) {
     showModalBottomSheet(
+      isScrollControlled: true,
       context: context,
       builder: (context) {
         return BlocProvider(
@@ -43,10 +44,7 @@ class CustomFAB extends StatelessWidget {
               }
             },
             builder: (BuildContext context, AddNoteStates state) {
-              return  AbsorbPointer(
-                absorbing: state is LoadingAddNote?true:false,
-                child: const AddNoteForm(),
-              );
+              return  const AddNoteForm();
             },
           ),
         );
