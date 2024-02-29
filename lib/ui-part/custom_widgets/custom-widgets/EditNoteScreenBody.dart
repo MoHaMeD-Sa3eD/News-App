@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:notes_app/logic-part/cubits/viewNoteCubit/ViewNoteCubit.dart';
+import 'package:notes_app/ui-part/custom_widgets/custom-widgets/ColorItemListView.dart';
 import 'package:notes_app/ui-part/screens/HomeScreen.dart';
 
 import '../../../logic-part/NotesModel.dart';
@@ -63,6 +64,10 @@ class _EditNoteScreenBodyState extends State<EditNoteScreenBody> {
               },
             ),
           ),
+          const SizedBox(
+            height: 20,
+          ),
+          const SizedBox(height: 64, child: ColorItemListView()),
         ],
       ),
     );
