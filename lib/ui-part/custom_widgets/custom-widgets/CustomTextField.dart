@@ -13,6 +13,7 @@ class CustomTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16.0),
       child: TextFormField(
+        onChanged: customTextFieldModel.onChanged,
         cursorColor: kPrimaryCyanColor,
         maxLines: customTextFieldModel.maxLines,
         onSaved: customTextFieldModel.onSaved,

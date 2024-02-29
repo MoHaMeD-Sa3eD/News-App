@@ -18,7 +18,8 @@ class CustomNoteItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed(EditNoteScreen.editNoteScreenId);
+        Navigator.of(context)
+            .pushNamed(EditNoteScreen.editNoteScreenId, arguments: noteModel);
       },
       child: Container(
         margin: const EdgeInsets.only(bottom: 8),
@@ -44,7 +45,6 @@ class CustomNoteItem extends StatelessWidget {
                 onPressed: () {
                   noteModel.delete();
                   BlocProvider.of<ViewNoteCubit>(context).fetchNotes();
-
                 },
                 icon: const FaIcon(
                   FontAwesomeIcons.trash,
