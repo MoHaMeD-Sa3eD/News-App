@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:notes_app/logic-part/cubits/addNoteCubit/AddNoteCubit.dart';
 
 import 'ColorItem.dart';
 
@@ -36,6 +38,7 @@ class _ColorItemListViewState extends State<ColorItemListView> {
               onTap: () {
                 setState(() {
                   currentIndex = index;
+                  BlocProvider.of<AddNoteCubit>(context).color = colors[index];
                 });
               },
               child: ColorItem(
